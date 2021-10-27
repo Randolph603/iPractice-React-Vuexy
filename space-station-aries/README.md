@@ -16,6 +16,9 @@ Project is based on Vuexy. more details:
 
 Web Vitals是Google的一项重大举措，旨在为质量信号提供统一的指导，这对于在Web上提供出色的用户体验来说很重要。
 
+### Adding a Sass Stylesheet
+> npm install node-sass -D
+
 ### Electron
 
 Electron make it easy to display css+html as desktop application on windows and mac.
@@ -90,3 +93,7 @@ app.on('activate', () => {
     }
 })
 ```
+
+
+### lazy, Suspense
+React.lazy and Suspense are not yet available for server-side rendering

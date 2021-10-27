@@ -1,12 +1,24 @@
-import React from 'react';
+import { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import './index.scss'
+
+// Short code
+// const LazyApp = lazy(() => import('./App'))
+
+// delay code to display spinner
+const LazyApp = lazy(() => {
+  return Promise.all([
+    import('./App'),
+    new Promise(resolve => setTimeout(resolve, 2000))
+  ]).then(([moduleExports]) => moduleExports);
+});
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Suspense fallback={<>Loading...</>}>
+    <LazyApp />
+  </Suspense>,
   document.getElementById('root')
 );
 
