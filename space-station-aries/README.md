@@ -123,3 +123,33 @@ react-script has its build-in webpack and we need to modify it's config under no
 ```
 
 > npm i react-app-rewired react-app-rewire-sass-rule react-app-rewire-postcss react-app-rewire-alias -D
+
+**alias name with typescript**
+
+step 1. npm start will over write the tsconfig.json file, so is tsconfig.paths.json file.
+
+```json
+// tsconfig.paths.json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "services/*": ["./src/shared/services/*"],
+      "interfaces/*": ["./src/shared/interfaces/*"]
+    }
+  }
+}
+```
+step 2. Into tsconfig.json, before "compilerOptions" you need to extends the tsconfig.paths.json you just created.
+
+```json
+// tsconfig.json
+{
+  "extends": "./tsconfig.paths.json",
+  "compilerOptions": {
+   ...
+  }
+}
+```
+
+step 3. add alias into config-overrides.js as well.
