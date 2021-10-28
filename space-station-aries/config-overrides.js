@@ -1,8 +1,11 @@
 const path = require('path');
 const SassRuleRewire = require('react-app-rewire-sass-rule');
-const { alias } = require('react-app-rewire-alias');
+const { alias, configPaths } = require('react-app-rewire-alias');
 
 module.exports = function override(config, env) {
+  // const aliasMap = configPaths('./tsconfig.paths.json');
+  // config = alias(aliasMap)(config, env);
+
   config = alias({
     '@assets': path.resolve(__dirname, 'src/@core/assets'),
     '@components': path.resolve(__dirname, 'src/@core/components'),

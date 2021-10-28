@@ -19,10 +19,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "."
+    "baseUrl": "./"
   },
   "include": [
     "src",
     "electron.js"
-  ]
+  ],
+  "extends": "./tsconfig.paths.json"
 }
