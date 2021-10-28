@@ -2,7 +2,7 @@
   "name": "space-station-aries",
   "version": "0.1.0",
   "private": true,
-  "main": "public/electron.js",
+  "main": "electron.js",
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -11,10 +11,15 @@
     "@types/node": "^12.20.36",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
-    "node-sass": "^6.0.1",
+    "react-app-rewire-alias": "^1.1.4",
+    "react-app-rewire-sass-rule": "^2.2.1",
+    "react-app-rewired": "^2.1.8",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "bootstrap": "^4.6.0",
     "concurrently": "^6.3.0",
     "cross-env": "^7.0.3",
     "electron": "^15.3.0",
@@ -22,13 +27,14 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3",
+    "react-toastify": "^8.0.3",
     "wait-on": "^6.0.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .ts --ext .tsx",
     "lint:fix": "npm run lint --fix",

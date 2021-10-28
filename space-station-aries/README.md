@@ -97,3 +97,29 @@ app.on('activate', () => {
 
 ### lazy, Suspense
 React.lazy and Suspense are not yet available for server-side rendering
+
+### react-toastify
+Super easy notification [link](https://www.npmjs.com/package/react-toastify)
+
+### resolve-url-loader vs sass-loader
+react-script has its build-in webpack and we need to modify it's config under node_modules, which is inconvenient. Considering react-app-rewired
+
+### react-app-rewired
+此工具可以在不 'eject' 也不创建额外 react-scripts 的情况下修改 create-react-app 内置的 webpack 配置，然后你将拥有 create-react-app 的一切特性，且可以根据你的需要去配置 webpack 的 plugins, loaders 等。
+
+* 在根目录中创建一个 config-overrides.js 文件
+* 替换 package.json 中 scripts 执行部分
+```diff
+  /* package.json */
+  "scripts": {
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test --env=jsdom",
++   "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject"
+}
+```
+
+> npm i react-app-rewired react-app-rewire-sass-rule react-app-rewire-postcss react-app-rewire-alias -D
