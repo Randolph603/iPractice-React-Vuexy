@@ -12,23 +12,6 @@ form {
   input.error,
   input.error:focus {
     border-color: $danger !important;
-    ~ .custom-control-label::before,
-    ~ .custom-file-label {
-      border-color: $danger !important;
-    }
-    ~ .custom-control-label {
-      color: $danger;
-    }
-  }
-  .form-group {
-    .custom-control-input.error {
-      cursor: pointer;
-      & {
-        ~ .custom-control-label:before {
-          border-color: $danger !important;
-        }
-      }
-    }
   }
   textarea.error {
     border-color: $danger !important;

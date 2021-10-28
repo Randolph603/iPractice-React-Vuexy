@@ -7,8 +7,6 @@ import navigation from '@src/navigation/horizontal'
 
 // ** Third Party Components
 import classnames from 'classnames'
-import { DropdownItem } from 'reactstrap'
-import { FormattedMessage } from 'react-intl'
 
 // ** Utils
 import { isNavLinkActive, search, getAllParents } from '@layouts/utils'
@@ -87,9 +85,7 @@ const HorizontalNavMenuLink = ({
         /*eslint-enable */
       >
         {item.icon}
-        <span>
-          <FormattedMessage id={item.title} />
-        </span>
+        <span>{item.title}</span>
       </LinkTag>
     </li>
   )

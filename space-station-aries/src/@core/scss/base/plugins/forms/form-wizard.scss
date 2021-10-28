@@ -25,15 +25,12 @@ $step-box-width: 38px;
       min-height: auto;
       background-color: transparent;
       margin: 0;
-      padding: 0 1.75rem;
       color: $body-color;
       font-size: 1.5rem;
     }
     .step {
-      margin-bottom: .25rem;
-      margin-top: .25rem;
       .step-trigger {
-        padding: 0;
+        padding: 0 1.75rem;
         flex-wrap: nowrap;
         font-weight: normal;
         .bs-stepper-box {
@@ -104,6 +101,17 @@ $step-box-width: 38px;
         }
         & + .line {
           color: $primary;
+        }
+      }
+
+      &:first-child {
+        .step-trigger {
+          padding-left: 0;
+        }
+      }
+      &:last-child {
+        .step-trigger {
+          padding-right: 0;
         }
       }
     }
@@ -257,7 +265,7 @@ html[data-textdirection='rtl'] {
 }
 
 // Media Queries
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .bs-stepper {
     .bs-stepper-header {
       flex-direction: column;

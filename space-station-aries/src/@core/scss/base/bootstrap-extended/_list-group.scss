@@ -2,7 +2,7 @@
   File Name: list-group.scss
   Description: Contain list item, list group related extended SCSS.
   ----------------------------------------------------------------------------------------------
-  Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+  Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
   Author: PIXINVENT
   Author URL: http://www.themeforest.net/user/pixinvent
 ================================================================================================*/
@@ -23,42 +23,44 @@ ul.list-inline {
 }
 
 // bootstrap list group
-.list-group-item {
-  line-height: 1.5;
-  i,
-  svg {
-    position: relative;
-  }
-
-  // &:not(.active):focus:active {
-  //   color: inherit;
-  // }
-}
 .list-group {
-  .list-group-item-action {
-    &.active,
-    &:active {
-      background-color: $primary;
-      color: $white;
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        color: $white;
-      }
-      &:hover,
-      &:focus {
-        color: $white;
+  .list-group-item {
+    line-height: 1.5;
+    &.active {
+      &:hover {
         background-color: $primary;
       }
+      &:focus {
+        // color: $body-color;
+        outline: 0;
+        &:hover {
+          color: $white;
+        }
+      }
       small {
-        color: $text-muted !important;
+        color: $white !important;
       }
     }
     &:hover {
       background-color: $body-bg;
+    }
+
+    i,
+    svg {
+      position: relative;
+    }
+
+    &:not(.active):focus:active {
+      color: inherit;
+    }
+  }
+  .list-group-item-action {
+    &.active {
+      background-color: $primary;
+      color: $white;
+      &:focus {
+        background-color: $primary;
+      }
     }
     &:focus {
       background-color: $body-bg;

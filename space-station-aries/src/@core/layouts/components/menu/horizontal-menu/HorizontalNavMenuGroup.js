@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 
 // ** Third Party Components
 import classnames from 'classnames'
-import { FormattedMessage } from 'react-intl'
 import { Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap'
 
 // ** Utils
@@ -91,9 +90,7 @@ const HorizontalNavMenuGroup = props => {
         onClick={e => e.preventDefault()}
       >
         {item.icon}
-        <span>
-          <FormattedMessage id={item.title} />
-        </span>
+        <span>{item.title}</span>
       </DropdownToggle>
       <DropdownMenu tag='ul' modifiers={menuModifiers}>
         <HorizontalNavMenuItems

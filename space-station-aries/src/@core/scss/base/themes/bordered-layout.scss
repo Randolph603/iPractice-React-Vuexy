@@ -2,7 +2,7 @@
 // 	File Name: bordered-layout.scss
 // 	Description: SCSS file for Bordered layout.
 // 	----------------------------------------------------------------------------------------------
-// 	Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+// 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 // 	Author: PIXINVENT
 // 	Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
@@ -13,14 +13,12 @@
 .bordered-layout {
   .header-navbar {
     box-shadow: none;
-    border: 1px solid $border-color;
     &.floating-nav {
       border: 1px solid $border-color;
     }
     &.fixed-top {
       border-bottom: 1px solid $border-color;
       background: $body-bg;
-      box-shadow: none !important;
     }
   }
   .main-menu {

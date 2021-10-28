@@ -2,7 +2,7 @@
 // 	File Name: dark-layout.scss
 // 	Description: SCSS file for dark layout.
 // 	----------------------------------------------------------------------------------------------
-// 	Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+// 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 // 	Author: PIXINVENT
 // 	Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
@@ -120,12 +120,12 @@
 
   .horizontal-layout {
     .header-navbar {
-      background-color: $theme-dark-card-bg !important;
+      background-color: $theme-dark-card-bg;
     }
     &.navbar-sticky,
     &.navbar-static {
       .header-navbar {
-        background-color: $theme-dark-body-bg !important;
+        background-color: $theme-dark-body-bg;
       }
     }
   }
@@ -721,7 +721,6 @@
 
     .page-item {
       &.prev-item,
-      &.previous,
       &.prev {
         .page-link:before {
           background-image: url(str-replace(
@@ -881,19 +880,14 @@
   .list-group {
     .list-group-item {
       &:not([class*='list-group-item-']),
-      &.list-group-item-action:not(.active):not(:active) {
+      &.list-group-item-action {
         background-color: $theme-dark-card-bg;
         border-color: $theme-dark-border-color;
-        &:not(.disabled) {
-          color: $theme-dark-body-color;
-        }
-      }
-      &.list-group-item-action {
-        &:not(.active):not(:active) {
-          &:hover,
-          &:focus {
-            background-color: $theme-dark-body-bg;
-          }
+        color: $theme-dark-body-color;
+
+        &:hover,
+        &:focus {
+          background-color: $theme-dark-body-bg;
         }
         &.active,
         &:active {
@@ -1088,21 +1082,14 @@
 
   /********** FORMS **********/
 
-  // Autofill style
-  input:-webkit-autofill,
-  textarea:-webkit-autofill,
-  select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px $theme-dark-card-bg inset !important;
-    -webkit-text-fill-color: $theme-dark-body-color !important;
-  }
-
   // input
   input.form-control,
+  .custom-file-label,
   textarea.form-control {
     background-color: $theme-dark-input-bg;
     color: $theme-dark-body-color;
 
-    &:not(.is-valid):not(.is-invalid):not(:focus) {
+    &:not(:focus) {
       border-color: $theme-dark-input-border-color;
     }
 
@@ -1113,20 +1100,6 @@
     &:disabled,
     &[readonly='readonly'] {
       opacity: 0.5;
-    }
-  }
-
-  // custom file input label background
-  .custom-file-input {
-    ~ .custom-file-label {
-      background-color: $theme-dark-input-bg;
-      color: $theme-dark-body-color;
-    }
-
-    &:disabled {
-      ~ .custom-file-label {
-        opacity: 0.5;
-      }
     }
   }
 
@@ -1145,13 +1118,9 @@
   .custom-file-label {
     &:after {
       background-color: $theme-dark-body-bg;
+      border-left: 1px solid $theme-dark-border-color;
       color: $theme-dark-body-color;
     }
-  }
-
-  // custom input file border color
-  .custom-file-label {
-    border-color: $theme-dark-border-color;
   }
 
   // custom control like checkbox, radio and switch
@@ -1159,10 +1128,6 @@
     &:not(:checked) {
       ~ .custom-control-label:before {
         background-color: $theme-dark-card-bg;
-      }
-    }
-    &:not(:checked):not(:indeterminate):not(:invalid):not(.is-invalid):not(:valid):not(.is-valid) {
-      ~ .custom-control-label:before {
         border-color: $theme-dark-input-border-color;
       }
     }
@@ -1217,15 +1182,14 @@
   }
 
   // Added for override
-  .was-validated {
-    .form-control:invalid,
-    .form-control.is-invalid {
-      border-color: $danger !important;
-    }
-    .form-control:valid,
-    .form-control.is-valid {
-      border-color: $success !important;
-    }
+  .was-validated .form-control:invalid,
+  .form-control.is-invalid {
+    border-color: $danger !important;
+  }
+
+  .was-validated .form-control:valid,
+  .form-control.is-valid {
+    border-color: $success !important;
   }
 
   // form wizard
@@ -1284,7 +1248,7 @@
 
   // table
   .table {
-    // background-color: $theme-dark-table-bg;
+    background-color: $theme-dark-table-bg;
 
     td,
     th {
@@ -1422,7 +1386,7 @@
       .buttons-pdf,
       .buttons-print,
       .btn-secondary,
-      .dt-button-collection [class*='buttons-'] {
+      [class*='buttons-'] {
         background-color: $theme-dark-body-bg !important;
         &:active {
           background-color: $primary !important;
@@ -2242,12 +2206,6 @@
         }
       }
     }
-
-    .fc-timegrid-event-harness-inset .fc-timegrid-event,
-    .fc-timegrid-event.fc-event-mirror,
-    .fc-timegrid-more-link {
-      box-shadow: 0 0 0 1px $theme-dark-border-color;
-    }
   }
 
   // Invoice Application
@@ -2345,9 +2303,6 @@
                 background-image: url(str-replace(str-replace($chevron-down, 'currentColor', $white), '#', '%23'));
               }
             }
-          }
-          &.navbar-dark {
-            background: $theme-dark-card-bg !important;
           }
 
           .nav-link {

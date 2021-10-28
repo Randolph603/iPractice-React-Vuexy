@@ -4,7 +4,7 @@
 	It support light & dark version, flipped layout, right side icons, borders menu for
 	item separation.
 	----------------------------------------------------------------------------------------
-	Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard TemplateTheme
+	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard TemplateTheme
 	Author: PIXINVENT
 	Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
@@ -69,14 +69,8 @@
     z-index: 999 !important;
     line-height: 1;
     min-height: auto;
-    &.navbar-light {
-      background: $white;
-    }
-
     // Navbar- Brand Center - Logo
     &.navbar-horizontal.floating-nav {
-      left: 0;
-      top: 62px;
       width: calc(100vw - (100vw - 100%) - calc(#{$content-padding} * 2));
       background: $white;
     }
@@ -295,9 +289,7 @@
       );
       background-repeat: repeat-x;
       .navbar-horizontal.floating-nav {
-        // margin-top: $floating-nav-margin;
-        // margin-left: auto;
-        // margin-right: auto;
+        margin: $floating-nav-margin $content-padding 0;
       }
     }
 

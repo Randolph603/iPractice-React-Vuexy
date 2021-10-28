@@ -4,7 +4,7 @@
     light & dark version, flipped layout, right side icons, native scroll and borders menu
     item separation.
     ----------------------------------------------------------------------------------------
-    Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
@@ -99,8 +99,7 @@
           }
         }
         // fixed-top navbar when menu-collapsed
-        &.fixed-top,
-        &.floating-nav {
+        &.fixed-top {
           left: $menu-collapsed-width;
         }
       }

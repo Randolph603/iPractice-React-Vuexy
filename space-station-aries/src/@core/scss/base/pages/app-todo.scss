@@ -130,10 +130,7 @@
             .todo-item-action {
               display: flex;
               align-items: center;
-              > small {
-                margin-left: auto;
-              }
-
+              justify-content: space-between;
               a {
                 cursor: pointer;
                 font-size: 1.2rem;

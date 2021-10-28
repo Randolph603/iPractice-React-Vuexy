@@ -50,10 +50,17 @@
     border-radius: 50%;
     color: $white;
     position: absolute;
-    left: 1.25rem;
+    left: 1rem;
+  }
+  &:after {
+    content: '';
     background-size: $font-size-base;
     background-repeat: no-repeat;
-    background-position: center;
+    position: absolute;
+    left: 1.38rem;
+    top: 1.44rem;
+    width: $font-size-base;
+    height: $font-size-base;
   }
 }
 
@@ -68,6 +75,8 @@
   }
   &:before {
     background-color: $success;
+  }
+  &:after {
     background-image: url(str-replace(str-replace($check, 'currentColor', $white), '#', '%23'));
   }
 }
@@ -80,6 +89,8 @@
   }
   &:before {
     background-color: $danger;
+  }
+  &:after {
     background-image: url(str-replace(str-replace($remove, 'currentColor', $white), '#', '%23'));
   }
 }
@@ -92,6 +103,8 @@
   }
   &:before {
     background-color: $info;
+  }
+  &:after {
     background-image: url(str-replace(str-replace($infoIcon, 'currentColor', $white), '#', '%23'));
   }
 }
@@ -104,6 +117,8 @@
   }
   &:before {
     background-color: $warning;
+  }
+  &:after {
     background-image: url(str-replace(str-replace($warningIcon, 'currentColor', $white), '#', '%23'));
   }
 }
@@ -146,7 +161,7 @@
       right: -1px;
     }
   }
-  #toast-container:not(.toast-top-full-width):not(.toast-bottom-full-width) > div {
+  #toast-container > div {
     width: 20rem;
   }
   .toast-top-left {
