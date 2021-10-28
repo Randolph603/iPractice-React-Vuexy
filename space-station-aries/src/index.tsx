@@ -5,27 +5,17 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
 // ** stylesheet & Toast
-import './index.scss'
 import { ToastContainer } from 'react-toastify';
 
 // ** Spinner (Splash Screen)
 import Spinner from './@core/components/spinner/Fallback-spinner';
 
 // ** Core styles
-import './@core/assets/fonts/feather/iconfont.css'
-import './@core/scss/core.scss'
+import './@core/assets/fonts/feather/iconfont.css';
+import './@core/scss/core.scss';
+import './index.scss';
 
-
-// Short code
-// const LazyApp = lazy(() => import('./App'))
-
-// delay code to display spinner
-const LazyApp = lazy(() => {
-  return Promise.all([
-    import('./App'),
-    new Promise(resolve => setTimeout(resolve, 5000))
-  ]).then(([moduleExports]) => moduleExports);
-});
+const LazyApp = lazy(() => import('./App'));
 
 ReactDOM.render(
   <Suspense fallback={<Spinner />}>
