@@ -2,7 +2,7 @@
 //   File Name: pallette.scss
 //   Description: Custom color system styles, includes background, border and text colors
 //   ----------------------------------------------------------------------------------------------
-//   Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+//   Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //   Author: PIXINVENT
 //   Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
@@ -87,8 +87,7 @@
             border-color: rgba($color_value, 0.1);
           }
 
-          .fc-list-event-dot,
-          .fc-daygrid-event-dot {
+          .fc-list-event-dot {
             border-color: $color_value !important;
           }
 
@@ -469,7 +468,7 @@
             box-shadow: none !important;
           }
           .custom-control-input:focus ~ .custom-control-label::before {
-            border-color: $color_value !important;
+            border-color: $color_value;
           }
         }
       }

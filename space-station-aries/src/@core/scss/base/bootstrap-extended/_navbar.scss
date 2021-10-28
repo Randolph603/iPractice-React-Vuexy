@@ -3,7 +3,7 @@
     Description: Contain header navigation bar, vertical main navigation bar and
     horiznotal main navigation bar related SCSS.
     ----------------------------------------------------------------------------------------------
-    Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ================================================================================================*/
@@ -23,8 +23,7 @@
   transition: 300ms ease all, background 0s;
   z-index: 997;
 
-  &.fixed-top,
-  &.floating-nav {
+  &.fixed-top {
     left: $menu-expanded-width;
   }
 
@@ -65,14 +64,11 @@
   // floating nav
   &.floating-nav {
     position: fixed;
-    top: 0;
     right: 0;
-    margin-top: #{$floating-nav-margin};
+    margin: #{$floating-nav-margin} #{$content-padding} 0;
     width: calc(100vw - (100vw - 100%) - calc(#{$content-padding} * 2) - #{$menu-expanded-width});
     border-radius: $card-border-radius;
     z-index: 12;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   // static nav
@@ -393,7 +389,7 @@
 // Floating Navbar
 .navbar-floating {
   // Floating nav should have same padding across all screen
-  .navbar-container:not(.main-menu-content) {
+  .navbar-container {
     padding: 0.8rem 1rem;
   }
   .header-navbar-shadow {
@@ -648,8 +644,7 @@
 // for width of navbar in fixed-top
 @media (max-width: 1201px) {
   .header-navbar {
-    &.fixed-top,
-    &.floating-nav {
+    &.fixed-top {
       left: 0;
     }
   }

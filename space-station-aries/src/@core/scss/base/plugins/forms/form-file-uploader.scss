@@ -41,7 +41,7 @@
 
   // for preview of files
   .dz-preview {
-    // background: transparent !important;
+    background: transparent !important;
 
     .dz-error-mark,
     .dz-success-mark {
@@ -57,9 +57,6 @@
       &:after {
         border-bottom: 6px solid $danger;
       }
-    }
-    &.dz-image-preview{
-      background: transparent !important;
     }
   }
 

@@ -2,7 +2,7 @@
 //  File Name: custom-rtl.scss
 //  Description: RTL support SCSS file.
 //  ----------------------------------------------------------------------------------------------
-//  Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+//  Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //  Author: PIXINVENT
 //  Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
@@ -139,11 +139,6 @@
 }
 .select2-search__field {
   direction: rtl;
-}
-
-
-.apexcharts-canvas .apexcharts-text.apexcharts-yaxis-label{
-  transform: translate(14px, 0);
 }
 
 // Chartist

@@ -4,7 +4,7 @@
 .swal2-container {
   .swal2-popup {
     border-radius: $card-border-radius;
-    padding-bottom: 1.5rem;
+    padding: 2rem;
 
     // close button
     .swal2-close:focus {
@@ -77,15 +77,14 @@
 // Dark Layout
 .dark-layout {
   .swal2-container {
-    .swal2-popup .swal2-title {
-      color: $theme-dark-headings-color;
-    }
     .swal2-modal {
       background-color: $theme-dark-card-bg;
+
       .swal2-header {
         .swal2-title {
           color: $theme-dark-headings-color;
         }
+
         .swal2-icon-text {
           color: inherit;
         }
@@ -103,8 +102,7 @@
         color: $theme-dark-body-color;
       }
 
-      .swal2-content,
-      .swal2-html-container {
+      .swal2-content {
         color: $theme-dark-body-color;
       }
 
@@ -121,10 +119,6 @@
         border-color: $theme-dark-border-color;
         color: $theme-dark-body-color;
       }
-    }
-    .swal2-validation-message {
-      background-color: $theme-dark-body-bg;
-      color: $theme-dark-body-color;
     }
   }
 }

@@ -216,7 +216,6 @@ const VerticalLayout = props => {
         )}
       </footer>
 
-
       {themeConfig.layout.scrollTop === true ? (
         <div className='scroll-to-top'>
           <ScrollToTop showUnder={300} style={{ bottom: '5%' }}>

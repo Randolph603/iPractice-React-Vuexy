@@ -2,7 +2,7 @@
 //     File Name: page-misc.scss
 //     Description: Coming Soon pages custom scss
 //     ----------------------------------------------------------------------------------------------
-//     Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+//     Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //     Author: PIXINVENT
 //     Author URL: http://www.themeforest.net/user/pixinvent
 // ================================================================================================
@@ -32,11 +32,5 @@ $misc-inner-max-width: 750px;
     .brand-text {
       font-weight: 600;
     }
-  }
-}
-
-@media (max-height: 625px) {
-  .misc-wrapper .misc-inner {
-    margin-top: 4rem;
   }
 }
