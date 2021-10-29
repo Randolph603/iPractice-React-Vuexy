@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 // ** React Imports
 import { useContext } from 'react'
 import { AbilityContext } from '@src/utility/context/Can'

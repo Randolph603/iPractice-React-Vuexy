@@ -24,7 +24,7 @@ const themeConfig = {
     footer: {
       type: 'static' // static, sticky, hidden
     },
-    customizer: false,
+    customizer: true,
     scrollTop: true // Enable scroll to top button
   }
 }

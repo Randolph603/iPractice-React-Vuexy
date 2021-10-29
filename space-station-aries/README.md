@@ -153,3 +153,18 @@ step 2. Into tsconfig.json, before "compilerOptions" you need to extends the tsc
 ```
 
 step 3. add alias into config-overrides.js as well.
+
+
+### packages need
+* @casl/react
+* animate.css
+* classnames
+* react-feather
+* react-perfect-scrollbar
+* react-redux
+* react-router-dom
+* react-scroll-up
+* react-select
+* reactstrap@8.10.0
+* redux-debounced
+* redux-thunk

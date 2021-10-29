@@ -1,7 +1,6 @@
-function App() {
-  return (
-    <>Hello World!</>
-  );
-}
+// ** Router Import
+import Router from './router/Router'
 
-export default App;
+const App = () => <Router />
+
+export default App
