@@ -25,12 +25,14 @@ $misc-inner-max-width: 750px;
   .brand-logo {
     display: flex;
     justify-content: center;
+    align-items: center;
     position: absolute;
     top: 2rem;
     left: 2rem;
     margin: 0;
     .brand-text {
       font-weight: 600;
+      margin-bottom: 0;
     }
   }
 }

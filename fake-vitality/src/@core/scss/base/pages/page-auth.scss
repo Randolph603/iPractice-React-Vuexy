@@ -71,9 +71,11 @@ $auth-1-inner-max-width: 400px !default;
   .brand-logo {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 1rem 0 2rem 0;
     .brand-text {
       font-weight: 600;
+      margin-bottom: 0;
     }
   }
 
