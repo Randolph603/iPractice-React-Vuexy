@@ -13,7 +13,7 @@ import LayoutWrapper from '@layouts/components/layout-wrapper'
 import { BrowserRouter as AppRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 // ** Routes & Default Routes
-import { DefaultRoute, Routes } from './routes'
+import { DefaultRoute, IRoute, Routes } from './routes'
 
 // ** Layouts
 import BlankLayout from '@layouts/BlankLayout'
@@ -36,8 +36,8 @@ const Router = () => {
 
   // ** Return Filtered Array of Routes & Paths
   const LayoutRoutesAndPaths = layout => {
-    const LayoutRoutes = []
-    const LayoutPaths = []
+    const LayoutRoutes: IRoute[] = []
+    const LayoutPaths: string[] = []
 
     if (Routes) {
       Routes.filter(route => {
@@ -111,20 +111,20 @@ const Router = () => {
                             /*eslint-disable */
                             {...(route.appLayout
                               ? {
-                                  appLayout: route.appLayout
-                                }
+                                appLayout: route.appLayout
+                              }
                               : {})}
                             {...(route.meta
                               ? {
-                                  routeMeta: route.meta
-                                }
+                                routeMeta: route.meta
+                              }
                               : {})}
                             {...(route.className
                               ? {
-                                  wrapperClass: route.className
-                                }
+                                wrapperClass: route.className
+                              }
                               : {})}
-                            /*eslint-enable */
+                          /*eslint-enable */
                           >
                             <route.component {...props} />
                             {/* <FinalRoute route={route} {...props} /> */}
@@ -164,7 +164,7 @@ const Router = () => {
         <Route
           exact
           path='/not-authorized'
-          render={props => (
+          render={() => (
             <Layouts.BlankLayout>
               <NotAuthorized />
             </Layouts.BlankLayout>

@@ -1,5 +1,5 @@
-@import '../bootstrap-extended/include'; // Bootstrap includes
-@import '../components/include'; // Components includes
+@import '~@styles/base/bootstrap-extended/include'; // Bootstrap includes
+@import '~@styles/base/components/include'; // Components includes
 
 $auth-1-inner-max-width: 400px !default;
 

@@ -1,10 +1,12 @@
 // ** React Imports
-import { useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react';
 
 // ** Custom Hooks
-import { useSkin } from '@hooks/useSkin'
+import { useSkin } from '@hooks/useSkin';
 
-const BlankLayout = ({ children, ...rest }) => {
+interface Props { children?: ReactNode }
+
+const BlankLayout: React.FC<Props> = ({ children, ...rest }) => {
   // ** Hooks
   const [skin, setSkin] = useSkin()
 

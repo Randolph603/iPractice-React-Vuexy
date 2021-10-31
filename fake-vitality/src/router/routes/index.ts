@@ -18,7 +18,7 @@ const Routes = [
   },
   {
     path: '/login',
-    component: lazy(() => import('../../views/Login')),
+    component: lazy(() => import('../../views/Login/Login')),
     layout: 'BlankLayout',
     meta: {
       authRoute: true
@@ -30,5 +30,16 @@ const Routes = [
     layout: 'BlankLayout'
   }
 ]
+
+export interface IRoute {
+  path: string;
+  component: any;
+  layout?: string;
+  meta?: object;
+  exact?: boolean;
+  className?: string;
+  appLayout?: any;
+}
+
 
 export { DefaultRoute, TemplateTitle, Routes }

@@ -1,13 +1,17 @@
 import { useSkin } from '@hooks/useSkin'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
 import InputPasswordToggle from '@components/input-password-toggle'
-import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, CustomInput, Button } from 'reactstrap'
-import '@styles/base/pages/page-auth.scss';
+import {
+  Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input,
+  CustomInput, Button
+} from 'reactstrap'
+// import '@styles/base/pages/page-auth.scss';
+import './page-auth.scss';
 import logo from '@src/assets/images/logo/logo_x35.png';
 
-const Login = () => {
-  const [skin, setSkin] = useSkin()
+const Login: React.FC = () => {
+  const [skin] = useSkin()
 
   const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg';
   const source = require(`@src/assets/images/pages/${illustration}`).default;
@@ -19,6 +23,7 @@ const Login = () => {
           <img src={logo} alt='logo' />
           <h2 className='brand-text text-primary ml-1'>Fake Vitality</h2>
         </Link>
+
         <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
           <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
             <img className='img-fluid' src={source} alt='Login V2' />
@@ -51,9 +56,9 @@ const Login = () => {
               <FormGroup>
                 <CustomInput type='checkbox' className='custom-control-Primary' id='remember-me' label='Remember Me' />
               </FormGroup>
-              <Button.Ripple tag={Link} to='/' color='primary' block>
+              <Button tag={Link} to='/' color='primary' block>
                 Sign in
-              </Button.Ripple>
+              </Button>
             </Form>
             <p className='text-center mt-2'>
               <span className='mr-25'>New on our platform?</span>
@@ -65,18 +70,18 @@ const Login = () => {
               <div className='divider-text'>or</div>
             </div>
             <div className='auth-footer-btn d-flex justify-content-center'>
-              <Button.Ripple color='facebook'>
+              <Button color='facebook'>
                 <Facebook size={14} />
-              </Button.Ripple>
-              <Button.Ripple color='twitter'>
+              </Button>
+              <Button color='twitter'>
                 <Twitter size={14} />
-              </Button.Ripple>
-              <Button.Ripple color='google'>
+              </Button>
+              <Button color='google'>
                 <Mail size={14} />
-              </Button.Ripple>
-              <Button.Ripple className='mr-0' color='github'>
+              </Button>
+              <Button className='mr-0' color='github'>
                 <GitHub size={14} />
-              </Button.Ripple>
+              </Button>
             </div>
           </Col>
         </Col>

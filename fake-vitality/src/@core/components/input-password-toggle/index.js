@@ -53,11 +53,11 @@ const InputPasswordToggle = props => {
           /*eslint-disable */
           {...(label && htmlFor
             ? {
-                id: htmlFor
-              }
+              id: htmlFor
+            }
             : {})}
           {...rest}
-          /*eslint-enable */
+        /*eslint-enable */
         />
         <InputGroupAddon addonType='append' onClick={() => setInputVisibility(!inputVisibility)}>
           <InputGroupText className='cursor-pointer'>{renderIcon()}</InputGroupText>
@@ -89,7 +89,9 @@ InputPasswordToggle.propTypes = {
     if (props[propName] && props['label'] === 'undefined') {
       throw new Error('label prop is required when htmlFor prop is present')
     }
-  }
+  },
+  className: PropTypes.string,
+  id: PropTypes.string
 }
 
 // ** Default Props

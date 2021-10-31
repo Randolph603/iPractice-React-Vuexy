@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
+import { Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap'
 
 const SecondPage = () => {
   return (

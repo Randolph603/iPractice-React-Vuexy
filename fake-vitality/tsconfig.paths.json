@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "noImplicitAny": false,
       "baseUrl": ".",
       "paths": {
         "@assets/*": ["src/@core/assets/*"],
