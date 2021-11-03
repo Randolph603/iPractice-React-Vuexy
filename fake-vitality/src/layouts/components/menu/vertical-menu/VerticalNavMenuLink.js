@@ -1,6 +1,6 @@
 // ** React Imports
-import { useEffect } from 'react'
-import { NavLink, useLocation, matchPath, useParams } from 'react-router-dom'
+import { useCallback, useEffect } from 'react'
+import { NavLink, useLocation, matchPath } from 'react-router-dom'
 
 // ** Third Party Components
 import { Badge } from 'reactstrap'
@@ -10,7 +10,7 @@ import classnames from 'classnames'
 import navigation from '@src/navigation/vertical'
 
 // ** Utils
-import { isNavLinkActive, search, getAllParents } from '@layouts/utils'
+import { search, getAllParents } from '@layouts/utils'
 
 const VerticalNavMenuLink = ({
   item,
@@ -40,11 +40,11 @@ const VerticalNavMenuLink = ({
   })
 
   // ** Search for current item parents
-  const searchParents = (navigation, currentURL) => {
+  const searchParents = useCallback((navigation, currentURL) => {
     const parents = search(navigation, currentURL, routerProps) // Search for parent object
     const allParents = getAllParents(parents, 'id') // Parents Object to Parents Array
     return allParents
-  }
+  }, [routerProps])
 
   // ** URL Vars
   const resetActiveGroup = navLink => {
@@ -65,7 +65,7 @@ const VerticalNavMenuLink = ({
       const arr = searchParents(navigation, currentURL)
       setGroupActive([...arr])
     }
-  }, [location])
+  }, [currentActiveItem, currentURL, location, searchParents, setActiveItem, setGroupActive])
 
   return (
     <li
@@ -81,20 +81,20 @@ const VerticalNavMenuLink = ({
         /*eslint-disable */
         {...(item.externalLink === true
           ? {
-              href: item.navLink || '/'
-            }
+            href: item.navLink || '/'
+          }
           : {
-              to: item.navLink || '/',
-              isActive: (match, location) => {
-                if (!match) {
-                  return false
-                }
-
-                if (match.url && match.url !== '' && match.url === item.navLink) {
-                  currentActiveItem = item.navLink
-                }
+            to: item.navLink || '/',
+            isActive: (match, location) => {
+              if (!match) {
+                return false
               }
-            })}
+
+              if (match.url && match.url !== '' && match.url === item.navLink) {
+                currentActiveItem = item.navLink
+              }
+            }
+          })}
         /*eslint-enable */
         onClick={e => {
           if (!item.navLink.length) {

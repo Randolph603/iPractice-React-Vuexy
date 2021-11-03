@@ -1,6 +1,5 @@
 import { Mail, Home } from 'react-feather'
-
-export default [
+const navigation = [
   {
     id: 'home',
     title: 'Home',
@@ -13,4 +12,5 @@ export default [
     icon: <Mail size={20} />,
     navLink: '/second-page'
   }
-]
+];
+export default navigation;

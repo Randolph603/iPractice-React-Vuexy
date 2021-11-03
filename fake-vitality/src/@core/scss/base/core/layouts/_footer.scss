@@ -14,15 +14,14 @@ footer {
     min-height: $footer-height;
     transition: 300ms ease all;
 
-    // heart icon scss
     span {
       i,
       svg {
-        height: 1.51rem;
-        width: 1.51rem;
-        font-size: 1.51rem;
+        // height: 1.51rem;
+        // width: 1.51rem;
+        // font-size: 1.51rem;
         margin-left: 0.5rem;
-        color: $danger;
+        color: $primary;
       }
     }
     .scroll-top {

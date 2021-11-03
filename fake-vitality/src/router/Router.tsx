@@ -1,24 +1,22 @@
-// ** React Imports
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy } from 'react';
 
 // ** Utils
-import { useLayout } from '@hooks/useLayout'
-import { useRouterTransition } from '@hooks/useRouterTransition'
-
-// ** Custom Components
-// import Spinner from '@components/spinner/Loading-spinner' // Uncomment if your require content fallback
-import LayoutWrapper from '@layouts/components/layout-wrapper'
+import { useLayout } from '@hooks/useLayout';
+import { useRouterTransition } from '@hooks/useRouterTransition';
 
 // ** Router Components
-import { BrowserRouter as AppRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as AppRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // ** Routes & Default Routes
-import { DefaultRoute, IRoute, Routes } from './routes'
+import { DefaultRoute, IRoute, Routes } from './routes';
 
-// ** Layouts
-import BlankLayout from '@layouts/BlankLayout'
-import VerticalLayout from '@src/layouts/VerticalLayout'
-import HorizontalLayout from '@src/layouts/HorizontalLayout'
+// ** Layouts & Components
+import LayoutWrapper from 'src/layouts/components/layout-wrapper';
+import BlankLayout from 'src/layouts/BlankLayout';
+import VerticalLayout from 'src/layouts/VerticalLayout';
+import HorizontalLayout from 'src/layouts/HorizontalLayout';
+import { LoadingSpinner } from 'src/components/spinner';
+import { isUserLoggedIn } from 'src/utility/Utils';
 
 const Router = () => {
   // ** Hooks
@@ -40,7 +38,7 @@ const Router = () => {
     const LayoutPaths: string[] = []
 
     if (Routes) {
-      Routes.filter(route => {
+      Routes.forEach(route => {
         // ** Checks if Route layout or Default layout matches current layout
         if (route.layout === layout || (route.layout === undefined && DefaultLayout === layout)) {
           LayoutRoutes.push(route)
@@ -101,14 +99,13 @@ const Router = () => {
                       })
 
                       return (
-                        <Suspense fallback={null}>
+                        <Suspense fallback={<LoadingSpinner />}>
                           {/* Layout Wrapper to add classes based on route's layout, appLayout and className */}
                           <LayoutWrapper
                             layout={DefaultLayout}
                             transition={transition}
                             setTransition={setTransition}
                             /* Conditional props */
-                            /*eslint-disable */
                             {...(route.appLayout
                               ? {
                                 appLayout: route.appLayout
@@ -124,10 +121,8 @@ const Router = () => {
                                 wrapperClass: route.className
                               }
                               : {})}
-                          /*eslint-enable */
                           >
                             <route.component {...props} />
-                            {/* <FinalRoute route={route} {...props} /> */}
                           </LayoutWrapper>
                         </Suspense>
                       )
@@ -145,37 +140,13 @@ const Router = () => {
   return (
     <AppRouter basename={process.env.REACT_APP_BASENAME}>
       <Switch>
-        {/* If user is logged in Redirect user to DefaultRoute else to login */}
-        {/* <Route
-          exact
-          path='/'
-          render={() => {
-            return isUserLoggedIn() ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />
-          }}
-        /> */}
-        <Route
-          exact
-          path='/'
-          render={() => {
-            return <Redirect to={DefaultRoute} />
-          }}
-        />
-        {/* Not Auth Route */}
-        <Route
-          exact
-          path='/not-authorized'
-          render={() => (
-            <Layouts.BlankLayout>
-              <NotAuthorized />
-            </Layouts.BlankLayout>
-          )}
-        />
+        <Route exact path='/' render={() => !isUserLoggedIn() ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />} />
+        <Route exact path='/not-authorized' render={() => (<BlankLayout><NotAuthorized /></BlankLayout>)} />
         {ResolveRoutes()}
-        {/* NotFound Error page */}
         <Route path='*' component={Error} />/
       </Switch>
     </AppRouter>
   )
 }
 
-export default Router
+export default Router;

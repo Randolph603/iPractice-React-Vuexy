@@ -8,38 +8,43 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './redux/storeConfig/store';
 
-// ** Toast & ThemeColors Context
-import { ToastContainer } from 'react-toastify';
+// ** ThemeColors Context
 import { ThemeContext } from './utility/context/ThemeColors';
 
 // ** Spinner (Splash Screen)
-import Spinner from './@core/components/spinner/Fallback-spinner';
+import SpinnerComponent from './components/spinner/FallbackSpinner';
 
-// ** Ripple Button
-import './@core/components/ripple-button';
+// ** React Toastify & Toast
+import { ToastContainer } from 'react-toastify';
+import '@styles/react/libs/toastify/toastify.scss';
 
 // ** React Perfect Scrollbar
 import 'react-perfect-scrollbar/dist/css/styles.css';
-
-// ** React Toastify
-import '@styles/react/libs/toastify/toastify.scss';
 
 // ** Core styles
 import './@core/assets/fonts/feather/iconfont.css';
 import './@core/scss/core.scss';
 import './index.scss';
 
-const LazyApp = lazy(() => import('./App'));
+
+// const LazyApp = lazy(() => import('./App'));
+const DelayLazyApp = lazy(() => {
+  return Promise.all([
+    import("./App"),
+    new Promise(resolve => setTimeout(resolve, 2000))
+  ])
+  .then(([moduleExports]) => moduleExports);
+});
 
 ReactDOM.render(
   <Provider store={store}>
-  <Suspense fallback={<Spinner />}>
-    <ThemeContext>
-      <LazyApp />
-      <ToastContainer newestOnTop />
-    </ThemeContext>
-  </Suspense>
-</Provider>,
+    <Suspense fallback={<SpinnerComponent />}>
+      <ThemeContext>
+        <DelayLazyApp />
+        <ToastContainer newestOnTop />
+      </ThemeContext>
+    </Suspense>
+  </Provider>,
   document.getElementById('root')
 );
 

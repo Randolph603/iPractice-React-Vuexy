@@ -1,7 +1,7 @@
-import { Button } from 'reactstrap'
+import RippleButton from 'src/components/ripple-button/RippleButton';
 import { Link } from 'react-router-dom'
-import errorImg from '@src/assets/images/pages/error.svg'
-import logo from '@src/assets/images/logo/logo_x35.png';
+import errorImg from 'src/assets/images/pages/error.svg'
+import logo from 'src/assets/images/logo/logo_x35.png';
 
 import '@styles/base/pages/page-misc.scss'
 
@@ -16,9 +16,9 @@ const Error = () => {
         <div className='w-100 text-center'>
           <h2 className='mb-1'>Page Not Found 🕵🏻‍♀️</h2>
           <p className='mb-2'>Oops! 😖 The requested URL was not found on this server.</p>
-          <Button.Ripple tag={Link} to='/' color='primary' className='btn-sm-block mb-2'>
+          <RippleButton tag={Link} to='/' color='primary' className='btn-sm-block mb-2'>
             Back to home
-          </Button.Ripple>
+          </RippleButton>
           <img className='img-fluid' src={errorImg} alt='Not authorized page' />
         </div>
       </div>

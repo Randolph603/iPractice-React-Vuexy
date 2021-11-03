@@ -15,7 +15,7 @@ const navbarReducer = (state = initialState, action) => {
       let objectToUpdate
 
       // ** find & update object
-      state.suggestions.find(item => {
+      state.suggestions.forEach(item => {
         if (item.id === action.id) {
           item.isBookmarked = !item.isBookmarked
           objectToUpdate = item

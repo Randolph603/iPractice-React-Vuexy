@@ -17,8 +17,6 @@ const Customizer = props => {
   const {
     skin,
     setSkin,
-    isRtl,
-    setIsRtl,
     layout,
     setLayout,
     navbarType,
@@ -246,13 +244,6 @@ const Customizer = props => {
                 checked={contentWidth === 'boxed'}
                 onChange={() => setContentWidth('boxed')}
               />
-            </div>
-          </FormGroup>
-
-          <FormGroup className='mb-2'>
-            <div className='d-flex'>
-              <p className='font-weight-bold mr-auto mb-0'>RTL</p>
-              <CustomInput type='switch' id='rtl' name='RTL' checked={isRtl} onChange={() => setIsRtl(!isRtl)} />
             </div>
           </FormGroup>
 

@@ -1,5 +1,5 @@
 // ** React Imports
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
 // ** Horizontal menu items array
@@ -9,7 +9,7 @@ import navigation from '@src/navigation/horizontal'
 import classnames from 'classnames'
 
 // ** Utils
-import { isNavLinkActive, search, getAllParents } from '@layouts/utils'
+import { search, getAllParents } from '@layouts/utils'
 
 const HorizontalNavMenuLink = ({
   item,
@@ -28,15 +28,13 @@ const HorizontalNavMenuLink = ({
   const location = useLocation()
   const currentURL = location.pathname
 
-  const navLinkActive = isNavLinkActive(item.navLink, currentURL, routerProps)
-
   // ** Get parents of current items
-  const searchParents = (navigation, currentURL) => {
+  const searchParents = useCallback((navigation, currentURL) => {
     const parents = search(navigation, currentURL, routerProps) // Search for parent object
     const allParents = getAllParents(parents, 'id') // Parents Object to Parents Array
     allParents.pop()
     return allParents
-  }
+  }, [routerProps])
 
   // ** Remove all items from OpenDropdown array
   const resetOpenDropdowns = () => setOpenDropdown([])
@@ -48,7 +46,7 @@ const HorizontalNavMenuLink = ({
       const arr = searchParents(navigation, currentURL)
       setGroupActive([...arr])
     }
-  }, [location])
+  }, [currentActiveItem, currentURL, location, searchParents, setActiveItem, setGroupActive])
 
   return (
     <li
@@ -68,21 +66,21 @@ const HorizontalNavMenuLink = ({
         /*eslint-disable */
         {...(item.externalLink === true
           ? {
-              href: item.navLink || '/'
-            }
+            href: item.navLink || '/'
+          }
           : {
-              to: item.navLink || '/',
-              isActive: (match, location) => {
-                if (!match) {
-                  return false
-                }
-
-                if (match.url && match.url !== '' && match.url === item.navLink) {
-                  currentActiveItem = item.navLink
-                }
+            to: item.navLink || '/',
+            isActive: (match, location) => {
+              if (!match) {
+                return false
               }
-            })}
-        /*eslint-enable */
+
+              if (match.url && match.url !== '' && match.url === item.navLink) {
+                currentActiveItem = item.navLink
+              }
+            }
+          })}
+      /*eslint-enable */
       >
         {item.icon}
         <span>{item.title}</span>

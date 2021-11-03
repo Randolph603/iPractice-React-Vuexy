@@ -1,5 +1,5 @@
-// ** Logo
-import logo from '@src/assets/images/logo/logo.png'
+import './app-loader.scss';
+import logo from '@src/assets/images/logo/logo.png';
 
 const SpinnerComponent = () => {
   return (
@@ -14,4 +14,4 @@ const SpinnerComponent = () => {
   )
 }
 
-export default SpinnerComponent
+export default SpinnerComponent;

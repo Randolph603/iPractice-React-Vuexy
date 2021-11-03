@@ -227,7 +227,7 @@
       &.active {
         z-index: 1;
         > a {
-          background: linear-gradient(118deg, rgba($primary, 1), rgba($primary, 0.7));
+          background: linear-gradient(270deg, rgba($primary, 1), rgba($primary, 0.7));
           box-shadow: 0 0 10px 1px rgba($primary, 0.7);
           color: $white;
           font-weight: 400;
@@ -305,7 +305,7 @@
         }
 
         .active {
-          background: linear-gradient(118deg, rgba($primary, 1), rgba($primary, 0.7));
+          background: linear-gradient(270deg, rgba($primary, 1), rgba($primary, 0.7));
           box-shadow: 0 0 10px 1px rgba($primary, 0.7);
           border-radius: 4px;
           z-index: 1;

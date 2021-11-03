@@ -1,17 +1,15 @@
-import { useSkin } from '@hooks/useSkin'
-import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
-import InputPasswordToggle from '@components/input-password-toggle'
-import {
-  Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input,
-  CustomInput, Button
-} from 'reactstrap'
-// import '@styles/base/pages/page-auth.scss';
 import './page-auth.scss';
+
+import { useSkin } from '@hooks/useSkin';
+import { Link } from 'react-router-dom';
+import InputPasswordToggle from '@components/input-password-toggle';
+import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 import logo from '@src/assets/images/logo/logo_x35.png';
+import microsoft from '@src/assets/images/icons/file-icons/microsoft.png';
+import RippleButton from '@src/components/ripple-button/RippleButton';
 
 const Login: React.FC = () => {
-  const [skin] = useSkin()
+  const [skin] = useSkin();
 
   const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg';
   const source = require(`@src/assets/images/pages/${illustration}`).default;
@@ -56,32 +54,18 @@ const Login: React.FC = () => {
               <FormGroup>
                 <CustomInput type='checkbox' className='custom-control-Primary' id='remember-me' label='Remember Me' />
               </FormGroup>
-              <Button tag={Link} to='/' color='primary' block>
+              <RippleButton tag={Link} to='/' color='primary' block>
                 Sign in
-              </Button>
+              </RippleButton>
             </Form>
-            <p className='text-center mt-2'>
-              <span className='mr-25'>New on our platform?</span>
-              <Link to='/'>
-                <span>Create an account</span>
-              </Link>
-            </p>
             <div className='divider my-2'>
               <div className='divider-text'>or</div>
             </div>
             <div className='auth-footer-btn d-flex justify-content-center'>
-              <Button color='facebook'>
-                <Facebook size={14} />
-              </Button>
-              <Button color='twitter'>
-                <Twitter size={14} />
-              </Button>
-              <Button color='google'>
-                <Mail size={14} />
-              </Button>
-              <Button className='mr-0' color='github'>
-                <GitHub size={14} />
-              </Button>
+              <RippleButton color='facebook' block>
+                <img className='mr-1' src={microsoft} alt='' />
+                Microsoft
+              </RippleButton>
             </div>
           </Col>
         </Col>
@@ -90,4 +74,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default Login
+export default Login;

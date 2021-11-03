@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, useEffect } from 'react'
+import { Fragment, useCallback, useEffect } from 'react'
 
 // ** Third Party Components
 import classnames from 'classnames'
@@ -25,7 +25,7 @@ const LayoutWrapper = props => {
   const Tag = layout === 'HorizontalLayout' && !appLayout ? 'div' : Fragment
 
   // ** Clean Up Function
-  const cleanUp = () => {
+  const cleanUp = useCallback(() => {
     if (routeMeta) {
       if (routeMeta.contentWidth) {
         dispatch(handleContentWidth('full'))
@@ -37,7 +37,7 @@ const LayoutWrapper = props => {
         dispatch(handleMenuHidden(!routeMeta.menuHidden))
       }
     }
-  }
+  }, [dispatch, routeMeta])
 
   // ** ComponentDidMount
   useEffect(() => {
@@ -53,7 +53,7 @@ const LayoutWrapper = props => {
       }
     }
     return () => cleanUp()
-  }, [])
+  }, [cleanUp, dispatch, routeMeta])
 
   return (
     <div
@@ -77,7 +77,7 @@ const LayoutWrapper = props => {
           {...(layout === 'HorizontalLayout' && !appLayout
             ? { className: classnames({ 'content-body': !appLayout }) }
             : {})}
-          /*eslint-enable */
+        /*eslint-enable */
         >
           {children}
         </Tag>

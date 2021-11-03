@@ -97,7 +97,7 @@ export const isNavGroupActive = (children, currentURL, routerProps) => {
 
 export const search = (navigation, currentURL, routerProps) => {
   let result
-  navigation.some(child => {
+  navigation.forEach(child => {
     let children
     // If child have children => It's group => Go deeper(recursive)
     if (child.children && (children = search(child.children, currentURL, routerProps))) {

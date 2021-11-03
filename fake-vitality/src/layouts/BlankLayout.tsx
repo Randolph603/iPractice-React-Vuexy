@@ -1,26 +1,22 @@
-// ** React Imports
+import { useSkin } from '@src/utility/hooks/useSkin';
 import { ReactNode, useEffect, useState } from 'react';
 
-// ** Custom Hooks
-import { useSkin } from '@hooks/useSkin';
-
-interface Props { children?: ReactNode }
+interface Props {
+  children?: ReactNode;
+  rest?: [Props];
+}
 
 const BlankLayout: React.FC<Props> = ({ children, ...rest }) => {
-  // ** Hooks
-  const [skin, setSkin] = useSkin()
+  const [isMounted, setIsMounted] = useState(false);
+  useSkin();
 
-  // ** States
-  const [isMounted, setIsMounted] = useState(false)
-
-  //** ComponentDidMount
   useEffect(() => {
-    setIsMounted(true)
-    return () => setIsMounted(false)
-  }, [])
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   if (!isMounted) {
-    return null
+    return null;
   }
 
   return (
@@ -34,4 +30,4 @@ const BlankLayout: React.FC<Props> = ({ children, ...rest }) => {
   )
 }
 
-export default BlankLayout
+export default BlankLayout;

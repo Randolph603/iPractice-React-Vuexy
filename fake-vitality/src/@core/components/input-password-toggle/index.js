@@ -5,7 +5,7 @@ import { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Eye, EyeOff } from 'react-feather'
-import { InputGroup, InputGroupAddon, Input, InputGroupText, Label, inputClassName } from 'reactstrap'
+import { InputGroup, InputGroupAddon, Input, InputGroupText, Label } from 'reactstrap'
 
 const InputPasswordToggle = props => {
   // ** Props
@@ -90,7 +90,6 @@ InputPasswordToggle.propTypes = {
       throw new Error('label prop is required when htmlFor prop is present')
     }
   },
-  className: PropTypes.string,
   id: PropTypes.string
 }
 
