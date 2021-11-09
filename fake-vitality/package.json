@@ -20,6 +20,8 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "@azure/msal-browser": "^2.19.0",
+    "@azure/msal-react": "^1.1.1",
     "@casl/react": "^2.3.0",
     "animate.css": "^4.1.1",
     "bootstrap": "^4.6.0",

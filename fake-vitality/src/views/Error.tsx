@@ -4,8 +4,10 @@ import errorImg from 'src/assets/images/pages/error.svg'
 import logo from 'src/assets/images/logo/logo_x35.png';
 
 import '@styles/base/pages/page-misc.scss'
+import { useSkin } from '@src/utility/hooks/useSkin';
 
 const Error = () => {
+  useSkin();
   return (
     <div className='misc-wrapper'>
       <a className='brand-logo' href='/'>

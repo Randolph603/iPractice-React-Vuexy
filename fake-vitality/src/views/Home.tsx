@@ -5,16 +5,13 @@ const Home = () => {
     <div>
       <Card>
         <CardHeader>
-          <CardTitle>Kick start your project 🚀</CardTitle>
+          <CardTitle>This is React version for fake vitality 🚀</CardTitle>
         </CardHeader>
         <CardBody>
-          <CardText>All the best for your new project.</CardText>
+          <CardText>Buddha bless no bug!</CardText>
           <CardText>
             Please make sure to read our{' '}
-            <CardLink
-              href='https://pixinvent.com/demo/vuexy-react-admin-dashboard-template/documentation/'
-              target='_blank'
-            >
+            <CardLink href='/second-page'                         >
               Template Documentation
             </CardLink>{' '}
             to understand where to go from here and how to use our template.
@@ -24,21 +21,24 @@ const Home = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>Want to integrate JWT? 🔒</CardTitle>
+          <CardTitle>MSAL Auth 🔒</CardTitle>
         </CardHeader>
         <CardBody>
           <CardText>
-            We carefully crafted JWT flow so you can implement JWT with ease and with minimum efforts.
+            <p>
+              "@azure/msal-browser": "^2.19.0",
+              "@azure/msal-react": "^1.1.1",
+            </p>
           </CardText>
           <CardText>
-            Please read our{' '}
+            Please read{' '}
             <CardLink
-              href='https://pixinvent.com/demo/vuexy-react-admin-dashboard-template/documentation/development/auth'
+              href='https://https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-react'
               target='_blank'
             >
-              JWT Documentation
+              Tutorial: Sign in users and call the Microsoft Graph API from a React single-page app (SPA) using auth code flow
             </CardLink>{' '}
-            to get more out of JWT authentication.
+            to get more out of MSAL authentication.
           </CardText>
         </CardBody>
       </Card>

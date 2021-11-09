@@ -17,29 +17,25 @@ import themeConfig from '@configs/themeConfig'
 
 // ** Custom Components
 import Customizer from '@components/customizer'
+
 import FooterComponent from './components/footer'
-import NavbarComponent from './components/navbar'
-import SidebarComponent from './components/menu/vertical-menu'
+import NavbarUser from './components/navbar/NavbarUser';
+import SidebarComponent from './components/menu'
 
 // ** Custom Hooks
 import { useSkin } from '@hooks/useSkin'
-import { useNavbarType } from '@hooks/useNavbarType'
-import { useFooterType } from '@hooks/useFooterType'
-import { useNavbarColor } from '@hooks/useNavbarColor'
 
 // ** Styles
 import '@styles/base/core/menu/menu-types/vertical-menu.scss'
 import '@styles/base/core/menu/menu-types/vertical-overlay-menu.scss'
 
+
 const VerticalLayout = props => {
   // ** Props
-  const { children, navbar, footer, menu, routerProps, currentActiveItem } = props
+  const { children, navbar, menu, routerProps, currentActiveItem } = props
 
   // ** Hooks
   const [skin, setSkin] = useSkin()
-  const [navbarType, setNavbarType] = useNavbarType()
-  const [footerType, setFooterType] = useFooterType()
-  const [navbarColor, setNavbarColor] = useNavbarColor()
 
   // ** States
   const [isMounted, setIsMounted] = useState(false)
@@ -48,7 +44,7 @@ const VerticalLayout = props => {
 
   // ** Store Vars
   const dispatch = useDispatch()
-  const layoutStore = useSelector(state => state.layout)
+  const layoutStore = useSelector((state) => state.layout)
 
   // ** Update Window Width
   const handleWindowWidth = () => {
@@ -90,13 +86,6 @@ const VerticalLayout = props => {
     return () => setIsMounted(false)
   }, [])
 
-  // ** Vars
-  const footerClasses = {
-    static: 'footer-static',
-    sticky: 'footer-fixed',
-    hidden: 'footer-hidden'
-  }
-
   const navbarWrapperClasses = {
     floating: 'navbar-floating',
     sticky: 'navbar-sticky',
@@ -111,7 +100,7 @@ const VerticalLayout = props => {
     hidden: 'd-none'
   }
 
-  const bgColorCondition = navbarColor !== '' && navbarColor !== 'light' && navbarColor !== 'white'
+  const bgColorCondition = true;
 
   if (!isMounted) {
     return null
@@ -119,9 +108,7 @@ const VerticalLayout = props => {
   return (
     <div
       className={classnames(
-        `wrapper vertical-layout ${navbarWrapperClasses[navbarType] || 'navbar-floating'} ${
-          footerClasses[footerType] || 'footer-static'
-        }`,
+        `wrapper vertical-layout ${navbarWrapperClasses.floating || 'navbar-floating'} footer-static`,
         {
           // Modern Menu
           'vertical-menu-modern': windowWidth >= 1200,
@@ -153,16 +140,16 @@ const VerticalLayout = props => {
         expand='lg'
         light={skin !== 'dark'}
         dark={skin === 'dark' || bgColorCondition}
-        color={bgColorCondition ? navbarColor : undefined}
+        color={bgColorCondition ? 'navbarColor' : undefined}
         className={classnames(
-          `header-navbar navbar align-items-center ${navbarClasses[navbarType] || 'floating-nav'} navbar-shadow`
+          `header-navbar navbar align-items-center ${navbarClasses.floating} navbar-shadow`
         )}
       >
         <div className='navbar-container d-flex content'>
           {navbar ? (
             navbar({ setMenuVisibility, skin, setSkin })
           ) : (
-            <NavbarComponent setMenuVisibility={setMenuVisibility} skin={skin} setSkin={setSkin} />
+            <NavbarUser skin={skin} setSkin={setSkin} setMenuVisibility={setMenuVisibility} />
           )}
         </div>
       </Navbar>
@@ -181,12 +168,6 @@ const VerticalLayout = props => {
         <Customizer
           skin={skin}
           setSkin={setSkin}
-          footerType={footerType}
-          setFooterType={setFooterType}
-          navbarType={navbarType}
-          setNavbarType={setNavbarType}
-          navbarColor={navbarColor}
-          setNavbarColor={setNavbarColor}
           layout={props.layout}
           setLayout={props.setLayout}
           isHidden={isHidden}
@@ -201,15 +182,9 @@ const VerticalLayout = props => {
         />
       ) : null}
       <footer
-        className={classnames(`footer footer-light ${footerClasses[footerType] || 'footer-static'}`, {
-          'd-none': footerType === 'hidden'
-        })}
+        className={classnames(`footer footer-light footer-static`)}
       >
-        {footer ? (
-          footer({ footerType, footerClasses })
-        ) : (
-          <FooterComponent footerType={footerType} footerClasses={footerClasses} />
-        )}
+        <FooterComponent />
       </footer>
 
       {themeConfig.layout.scrollTop === true ? (

@@ -5,10 +5,8 @@ import { useEffect, useState, createContext } from 'react'
 const ThemeColors = createContext()
 
 const ThemeContext = ({ children }) => {
-  // ** State
   const [colors, setColors] = useState({})
 
-  //** ComponentDidMount
   useEffect(() => {
     if (window !== 'undefined') {
       //** Get variable value

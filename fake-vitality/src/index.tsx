@@ -26,6 +26,11 @@ import './@core/assets/fonts/feather/iconfont.css';
 import './@core/scss/core.scss';
 import './index.scss';
 
+import { PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+import { msalConfig } from "./auth/authConfig";
+const msalInstance = new PublicClientApplication(msalConfig);
+
 
 // const LazyApp = lazy(() => import('./App'));
 const DelayLazyApp = lazy(() => {
@@ -33,16 +38,18 @@ const DelayLazyApp = lazy(() => {
     import("./App"),
     new Promise(resolve => setTimeout(resolve, 2000))
   ])
-  .then(([moduleExports]) => moduleExports);
+    .then(([moduleExports]) => moduleExports);
 });
 
 ReactDOM.render(
   <Provider store={store}>
     <Suspense fallback={<SpinnerComponent />}>
-      <ThemeContext>
-        <DelayLazyApp />
-        <ToastContainer newestOnTop />
-      </ThemeContext>
+      <MsalProvider instance={msalInstance}>
+        <ThemeContext>
+          <DelayLazyApp />
+          <ToastContainer newestOnTop />
+        </ThemeContext>
+      </MsalProvider>
     </Suspense>
   </Provider>,
   document.getElementById('root')

@@ -1,4 +1,4 @@
-import './page-auth.scss';
+import './Login.scss';
 
 import { useSkin } from '@hooks/useSkin';
 import { Link } from 'react-router-dom';
@@ -7,12 +7,50 @@ import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, CustomInp
 import logo from '@src/assets/images/logo/logo_x35.png';
 import microsoft from '@src/assets/images/icons/file-icons/microsoft.png';
 import RippleButton from '@src/components/ripple-button/RippleButton';
+import { useMsal } from "@azure/msal-react";
+import { toast, Slide } from 'react-toastify';
+import { Coffee } from 'react-feather';
+import { handleLogin } from '@store/actions/auth';
+import { useDispatch } from 'react-redux';
+
+import { loginRequest } from "@src/auth/authConfig";
+import Avatar from '@src/components/avatar';
+
+const ToastContent = ({ name }) => (
+  <>
+    <div className='toastify-header'>
+      <div className='title-wrapper'>
+        <Avatar size='sm' color='success' icon={<Coffee size={12} />} />
+        <h6 className='toast-title font-weight-bold'>Welcome, {name}</h6>
+      </div>
+    </div>
+    <div className='toastify-body'>
+      <span>You have successfully logged in to Fake Vitality. Now you can start to explore. Enjoy!</span>
+    </div>
+  </>
+)
 
 const Login: React.FC = () => {
-  const [skin] = useSkin();
+  useSkin();
+  const dispatch = useDispatch();
+  const { instance } = useMsal();
 
-  const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg';
-  const source = require(`@src/assets/images/pages/${illustration}`).default;
+  const source = require(`@src/assets/images/pages/login-v2-dark.svg`).default;
+
+  const msLogin = instance => {
+    instance.loginPopup(loginRequest).then(res => {
+    // instance.loginRedirect(loginRequest).then(res => {
+      console.log(res);
+      const data = { ...res.account, accessToken: res.accessToken };
+      dispatch(handleLogin(data))
+      toast.success(
+        <ToastContent name={data.name} />,
+        { transition: Slide, hideProgressBar: true, autoClose: 2000 }
+      )
+    }).catch(e => {
+      console.error(e);
+    });
+  }
 
   return (
     <div className='auth-wrapper auth-v2'>
@@ -62,7 +100,7 @@ const Login: React.FC = () => {
               <div className='divider-text'>or</div>
             </div>
             <div className='auth-footer-btn d-flex justify-content-center'>
-              <RippleButton color='facebook' block>
+              <RippleButton color='facebook' onClick={() => msLogin(instance)} block>
                 <img className='mr-1' src={microsoft} alt='' />
                 Microsoft
               </RippleButton>

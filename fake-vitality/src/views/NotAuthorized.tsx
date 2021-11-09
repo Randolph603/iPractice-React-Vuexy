@@ -1,11 +1,13 @@
-import RippleButton from '@src/components/ripple-button/RippleButton';
+import RippleButton from 'src/components/ripple-button/RippleButton';
 import { Link } from 'react-router-dom';
-import notAuthImg from '@src/assets/images/pages/not-authorized.svg';
-import logo from '@src/assets/images/logo/logo_x35.png';
+import notAuthImg from 'src/assets/images/pages/not-authorized.svg';
+import logo from 'src/assets/images/logo/logo_x35.png';
 
 import '@styles/base/pages/page-misc.scss';
+import { useSkin } from '@src/utility/hooks/useSkin';
 
 const NotAuthorized = () => {
+  useSkin();
   return (
     <div className='misc-wrapper'>
       <a className='brand-logo' href='/'>

@@ -1,10 +1,17 @@
-import { lazy } from 'react'
+import { lazy } from 'react';
 
-// ** Document title
-const TemplateTitle = '%s - Vuexy React Admin Template'
+export interface IRoute {
+  path: string;
+  component: any;
+  layout?: string;
+  meta?: object;
+  exact?: boolean;
+  className?: string;
+  appLayout?: any;
+}
 
 // ** Default Route
-const DefaultRoute = '/home'
+const DefaultRoute = '/home';
 
 // ** Merge Routes
 const Routes = [
@@ -31,15 +38,4 @@ const Routes = [
   }
 ]
 
-export interface IRoute {
-  path: string;
-  component: any;
-  layout?: string;
-  meta?: object;
-  exact?: boolean;
-  className?: string;
-  appLayout?: any;
-}
-
-
-export { DefaultRoute, TemplateTitle, Routes }
+export { DefaultRoute, Routes }

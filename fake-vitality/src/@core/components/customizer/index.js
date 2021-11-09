@@ -7,7 +7,7 @@ import classnames from 'classnames'
 import { Settings, X } from 'react-feather'
 import { CustomInput, FormGroup } from 'reactstrap'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { selectThemeColors } from '@utils'
+// import { selectThemeColors } from '@utils'
 
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
@@ -251,7 +251,7 @@ const Customizer = props => {
             <div className='d-flex justify-content-between align-items-center'>
               <p className='font-weight-bold mb-0'>Router Transition</p>
               <Select
-                theme={selectThemeColors}
+                // theme={selectThemeColors}
                 className='react-select'
                 classNamePrefix='select'
                 defaultValue={transitionOptions[0]}
