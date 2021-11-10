@@ -19,7 +19,7 @@ import themeConfig from '@configs/themeConfig'
 import Customizer from '@components/customizer'
 
 import FooterComponent from './components/footer'
-import NavbarUser from './components/navbar/NavbarUser';
+import NavbarUser from './components/navbar/NavbarUser'
 import SidebarComponent from './components/menu'
 
 // ** Custom Hooks
@@ -100,7 +100,7 @@ const VerticalLayout = props => {
     hidden: 'd-none'
   }
 
-  const bgColorCondition = true;
+  const bgColorCondition = true
 
   if (!isMounted) {
     return null

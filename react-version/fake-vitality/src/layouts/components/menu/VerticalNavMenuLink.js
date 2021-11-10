@@ -7,7 +7,7 @@ import { Badge } from 'reactstrap'
 import classnames from 'classnames'
 
 // ** Vertical Menu Array Of Items
-import navigation from '@src/navigation/vertical'
+import navigation from '@src/navigation'
 
 // ** Utils
 import { search, getAllParents } from '@src/layouts/utils'

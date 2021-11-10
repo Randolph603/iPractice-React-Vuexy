@@ -45,7 +45,7 @@ const Login: React.FC = () => {
       dispatch(handleLogin(data))
       toast.success(
         <ToastContent name={data.name} />,
-        { transition: Slide, hideProgressBar: true, autoClose: 2000 }
+        { transition: Slide, hideProgressBar: true, autoClose: 2000, icon: false }
       )
     }).catch(e => {
       console.error(e);
@@ -76,7 +76,7 @@ const Login: React.FC = () => {
                 <Label className='form-label' for='login-email'>
                   Email
                 </Label>
-                <Input type='email' id='login-email' placeholder='Randolph.Liu@vulcan.co' autoFocus />
+                <Input type='email' id='login-email' placeholder='Example@vulcan.co' autoFocus />
               </FormGroup>
               <FormGroup>
                 <div className='d-flex justify-content-between'>

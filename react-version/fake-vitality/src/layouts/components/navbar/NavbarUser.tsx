@@ -1,9 +1,12 @@
 import UserDropdown from './UserDropdown'
 import { Menu } from 'react-feather'
 import { NavItem, NavLink } from 'reactstrap'
+import { useLocation } from 'react-router-dom'
 
 const NavbarUser = props => {
   const { setMenuVisibility } = props
+  const location = useLocation();
+  console.log(location);
 
   return (
     <>

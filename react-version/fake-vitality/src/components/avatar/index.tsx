@@ -52,7 +52,6 @@ interface Props {
   rest?: [Props];
 }
 
-
 const Avatar = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     color,

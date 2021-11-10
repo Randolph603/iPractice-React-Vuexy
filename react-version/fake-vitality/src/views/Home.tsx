@@ -1,11 +1,17 @@
+
+import BreadCrumbs from '@src/components/breadcrumbs'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
+import { Home as HomeIcon } from 'react-feather'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
-    <div>
+    <>
+      <BreadCrumbs breadCrumbTitle={(<HomeIcon size={20} />)} breadCrumbParent='Fake Vitality' breadCrumbActive={(<Link to='/'>Home</Link>)} />
+
       <Card>
         <CardHeader>
-          <CardTitle>This is React version for fake vitality 🚀</CardTitle>
+          <CardTitle><h4>React version - fake vitality 🚀</h4></CardTitle>
         </CardHeader>
         <CardBody>
           <CardText>Buddha bless no bug!</CardText>
@@ -21,14 +27,12 @@ const Home = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>MSAL Auth 🔒</CardTitle>
+          <CardTitle><h4>MSAL Auth 🔒</h4></CardTitle>
         </CardHeader>
         <CardBody>
           <CardText>
-            <p>
-              "@azure/msal-browser": "^2.19.0",
-              "@azure/msal-react": "^1.1.1",
-            </p>
+            "@azure/msal-browser": "^2.19.0",
+            "@azure/msal-react": "^1.1.1",
           </CardText>
           <CardText>
             Please read{' '}
@@ -42,7 +46,7 @@ const Home = () => {
           </CardText>
         </CardBody>
       </Card>
-    </div>
+    </>
   )
 }
 

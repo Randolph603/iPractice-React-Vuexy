@@ -2,7 +2,7 @@
 import { Fragment, useState, useRef } from 'react'
 
 // ** Vertical Menu Items Array
-import navigation from '@src/navigation/vertical'
+import navigation from '@src/navigation'
 
 // ** Third Party Components
 import classnames from 'classnames'

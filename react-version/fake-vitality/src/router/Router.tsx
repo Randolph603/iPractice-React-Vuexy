@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { useRouterTransition } from '@hooks/useRouterTransition';
-import { BrowserRouter as AppRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { DefaultRoute, IRoute, Routes } from './routes';
 import LayoutWrapper from 'src/layouts/components/layout-wrapper';
 import BlankLayout from 'src/layouts/BlankLayout';
@@ -98,15 +98,26 @@ const Router = () => {
     })
   }
 
+  // use BrowserRouter for web application and HashRouter for the Electron.
+  const BaseRouter = props => {
+    const { children, ...rest } = props;
+    const userAgent = navigator.userAgent.toLowerCase();
+    console.log(userAgent);
+    const isElectron = userAgent.indexOf(' electron/') !== -1;
+    return isElectron
+      ? (<HashRouter {...rest}>{children}</HashRouter>)
+      : (<BrowserRouter {...rest}>{children}</BrowserRouter>)
+  };
+
   return (
-    <AppRouter basename={process.env.REACT_APP_BASENAME}>
+    <BaseRouter basename={process.env.REACT_APP_BASENAME}>
       <Switch>
         <Route exact path='/' render={() => isAuthenticated ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />} />
         <Route exact path='/not-authorized' render={() => (<BlankLayout><NotAuthorized /></BlankLayout>)} />
         {ResolveRoutes()}
         <Route path='*' component={Error} />/
       </Switch>
-    </AppRouter>
+    </BaseRouter>
   )
 }
 
