@@ -1,23 +1,34 @@
 const path = require("path")
-const { app, BrowserWindow } = require("electron")
+const { app, ipcMain, BrowserWindow } = require("electron")
 const isDev = require("electron-is-dev")
+const AuthProvider = require('./AuthProvider')
+
+const authProvider = new AuthProvider();
+let mainWindow;
 
 function createWindow() {
     // Create the browser window.
-    const win = new BrowserWindow({
-        width: 800,
+    mainWindow = new BrowserWindow({
+        width: 1200,
         height: 800,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            contextIsolation: false,
+            // TODO: fix diff config target and require func
+            // nodeIntegration: false, // is default value after Electron v5
+            // contextIsolation: true, // protect against prototype pollution
+            // enableRemoteModule: false, // turn off remote
+            // preload: path.join(__dirname, "preload.js") // use a preload script
         }
     })
 
     // and load the index.html of the app.
     // win.loadFile("index.html")
-    win.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`)
+    mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`)
     // Open the DevTools.
     if (isDev) {
-        win.webContents.openDevTools({ mode: 'detach' })
+        mainWindow.webContents.openDevTools({ mode: 'detach' })
     }
 }
 
@@ -42,3 +53,21 @@ app.on('activate', () => {
         createWindow()
     }
 })
+
+// Event handlers
+ipcMain.on('LOGIN', async (event, arg) => {
+    await authProvider.login(mainWindow);
+    mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+});
+ipcMain.on('LOGOUT', async () => {
+    await authProvider.logout();
+    mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+});
+
+
+ipcMain.handle('GETACCOUNT', async () => {
+    const account = await authProvider.getAccount();
+    console.log('GETACCOUNT', account);
+    return account
+});
+

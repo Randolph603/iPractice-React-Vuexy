@@ -6,7 +6,7 @@ import { handleLogout } from '@store/actions/auth';
 import { useMsal } from "@azure/msal-react";
 
 import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap';
-import { User, Power } from 'react-feather';
+import { Power } from 'react-feather';
 
 import defaultAvatar from '@src/assets/images/avatars/avatar-blank.png'
 import { callMsGraph, getMyPhoto } from '@src/utility/MsGraphApiCall';
@@ -27,34 +27,49 @@ const UserDropdown = () => {
 
 
   useEffect(() => {
-    if (inProgress === "none" && accounts.length > 0) {
 
-      instance.acquireTokenSilent({
-        account: accounts[0],
-        scopes: ["User.Read"]
-      }).then(response => {
-        if (response.accessToken) {
-
-          callMsGraph(response.accessToken)
-            .then(response => {
-              // console.log(response);
-              setUserData(response);
-            });
-
-          getMyPhoto(response.accessToken)
-            .then((response: string) => {
-              // console.log(response);
-              if (response) {
-                setUserAvatar(response);
-              }
-            });
-
-        }
-        return null;
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isElectron = userAgent.indexOf(' electron/') !== -1;
+    if (isElectron) {
+      const electron = require("electron");
+      electron.ipcRenderer.invoke('GETACCOUNT').then(account => {
+        console.log(account);
+        const userDataResponse = {
+          displayName: account.name,
+          officeLocation: account.username
+        } as UserDataType;
+        setUserData(userDataResponse);
       });
 
+    } else {
+      if (inProgress === "none" && accounts.length > 0) {
+        instance.acquireTokenSilent({
+          account: accounts[0],
+          scopes: ["User.Read"]
+        }).then(response => {
+          if (response.accessToken) {
+
+            callMsGraph(response.accessToken)
+              .then(response => {
+                // console.log(response);
+                setUserData(response);
+              });
+
+            getMyPhoto(response.accessToken)
+              .then((response: string) => {
+                // console.log(response);
+                if (response) {
+                  setUserAvatar(response);
+                }
+              });
+
+          }
+          return null;
+        });
 
 
+
+      }
     }
   }, [inProgress, accounts, instance]);
 
@@ -68,10 +83,10 @@ const UserDropdown = () => {
         <Avatar img={userAvatar} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu right>
-        <DropdownItem tag={Link} to='#' onClick={e => e.preventDefault()}>
+        {/* <DropdownItem tag={Link} to='#' onClick={e => e.preventDefault()}>
           <User size={14} className='mr-75' />
           <span className='align-middle'>Profile</span>
-        </DropdownItem>
+        </DropdownItem> */}
         <DropdownItem tag={Link} to='/login' onClick={() => dispatch(handleLogout(instance))}>
           <Power size={14} className='mr-75' />
           <span className='align-middle'>Logout</span>

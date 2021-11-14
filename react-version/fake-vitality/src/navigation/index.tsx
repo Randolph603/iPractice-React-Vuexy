@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { Mail, Home } from 'react-feather';
+import { FaReact, FaVuejs, FaAngular } from 'react-icons/fa';
+import { SiBlazor, SiElectron } from 'react-icons/si';
 interface iNavigation {
   id: string;
   title: string;
@@ -8,16 +9,34 @@ interface iNavigation {
 }
 const navigation: iNavigation[] = [
   {
-    id: 'home',
-    title: 'Home',
-    icon: <Home size={20} />,
-    navLink: '/home'
+    id: 'react',
+    title: 'React JS',
+    icon: <FaReact size={20} />,
+    navLink: '/react'
   },
   {
-    id: 'secondPage',
-    title: 'Second Page',
-    icon: (<Mail size={20} />),
-    navLink: '/second-page'
+    id: 'vue',
+    title: 'Vue JS',
+    icon: (<FaVuejs size={20} />),
+    navLink: '/vue'
+  },
+  {
+    id: 'angular',
+    title: 'Angular JS',
+    icon: (<FaAngular  size={20} />),
+    navLink: '/angular'
+  },
+  {
+    id: 'blazor',
+    title: 'Blazor',
+    icon: (<SiBlazor size={20} />),
+    navLink: '/blazor'
+  },
+  {
+    id: 'electron',
+    title: 'Electron',
+    icon: (<SiElectron size={20} />),
+    navLink: '/electron'
   }
 ];
 export default navigation

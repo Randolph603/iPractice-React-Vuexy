@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { useRouterTransition } from '@hooks/useRouterTransition';
 import { BrowserRouter, HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { DefaultRoute, IRoute, Routes } from './routes';
@@ -11,6 +11,7 @@ import { useIsAuthenticated } from "@azure/msal-react";
 const Router = () => {
   // ** Hooks
   const [transition, setTransition] = useRouterTransition();
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState<Boolean>();
 
   // ** Layout
   const DefaultLayout = 'VerticalLayout';
@@ -37,18 +38,34 @@ const Router = () => {
     return { LayoutRoutes, LayoutPaths }
   }
 
-  const NotAuthorized = lazy(() => import('@src/views/NotAuthorized'));
   const Error = lazy(() => import('@src/views/Error'));
+
   const isAuthenticated = useIsAuthenticated();
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isElectron = userAgent.indexOf(' electron/') !== -1;
+
+
+
+  useEffect(() => {
+    if(isElectron){
+      const electron = require("electron");
+      electron.ipcRenderer.invoke('GETACCOUNT').then(account=>{
+        console.log('Router get account', account);
+        setIsUserLoggedIn(!!account)
+      });
+    } else {
+      setIsUserLoggedIn(isAuthenticated)
+    }
+  }, [isAuthenticated, isElectron]);
 
   const FinalRoute = props => {
     const route = props.route;
     if (
-      (!isAuthenticated && route.meta === undefined) ||
-      (!isAuthenticated && route.meta && !route.meta.authRoute)
+      (!isUserLoggedIn && route.meta === undefined) ||
+      (!isUserLoggedIn && route.meta && !route.meta.authRoute)
     ) {
       return <Redirect to='/login' />
-    } else if (route.meta && route.meta.authRoute && isAuthenticated) {
+    } else if (route.meta && route.meta.authRoute && isUserLoggedIn) {
       return <Redirect to='/' />
     } else {
       return <route.component {...props} />
@@ -102,7 +119,6 @@ const Router = () => {
   const BaseRouter = props => {
     const { children, ...rest } = props;
     const userAgent = navigator.userAgent.toLowerCase();
-    console.log(userAgent);
     const isElectron = userAgent.indexOf(' electron/') !== -1;
     return isElectron
       ? (<HashRouter {...rest}>{children}</HashRouter>)
@@ -112,8 +128,7 @@ const Router = () => {
   return (
     <BaseRouter basename={process.env.REACT_APP_BASENAME}>
       <Switch>
-        <Route exact path='/' render={() => isAuthenticated ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />} />
-        <Route exact path='/not-authorized' render={() => (<BlankLayout><NotAuthorized /></BlankLayout>)} />
+        <Route exact path='/' render={() => isUserLoggedIn ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />} />
         {ResolveRoutes()}
         <Route path='*' component={Error} />/
       </Switch>

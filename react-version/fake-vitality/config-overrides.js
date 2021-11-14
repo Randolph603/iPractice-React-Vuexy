@@ -34,5 +34,10 @@ module.exports = function override(config, env) {
       ]
     })
     .rewire(config, env)
+
+  if (process.env.USE_ELECTRON === 'true') {
+    config.target = 'electron-renderer';
+  }
+
   return config
 }

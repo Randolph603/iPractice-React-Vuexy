@@ -11,17 +11,29 @@ export interface IRoute {
 }
 
 // ** Default Route
-const DefaultRoute = '/home';
+const DefaultRoute = '/react';
 
 // ** Merge Routes
 const Routes = [
   {
-    path: '/home',
-    component: lazy(() => import('../../views/Home'))
+    path: '/react',
+    component: lazy(() => import('../../views/React'))
   },
   {
-    path: '/second-page',
-    component: lazy(() => import('../../views/SecondPage'))
+    path: '/vue',
+    component: lazy(() => import('../../views/Vue'))
+  },
+  {
+    path: '/angular',
+    component: lazy(() => import('../../views/Angular'))
+  },
+  {
+    path: '/blazor',
+    component: lazy(() => import('../../views/Blazor'))
+  },
+  {
+    path: '/electron',
+    component: lazy(() => import('../../views/Electron'))
   },
   {
     path: '/login',

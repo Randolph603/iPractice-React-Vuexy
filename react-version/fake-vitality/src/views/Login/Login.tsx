@@ -37,19 +37,26 @@ const Login: React.FC = () => {
 
   const source = require(`@src/assets/images/pages/login-v2-dark.svg`).default;
 
-  const msLogin = instance => {
-    instance.loginPopup(loginRequest).then(res => {
-    // instance.loginRedirect(loginRequest).then(res => {
-      console.log(res);
-      const data = { ...res.account, accessToken: res.accessToken };
-      dispatch(handleLogin(data))
-      toast.success(
-        <ToastContent name={data.name} />,
-        { transition: Slide, hideProgressBar: true, autoClose: 2000, icon: false }
-      )
-    }).catch(e => {
-      console.error(e);
-    });
+  const msLogin = async (instance) => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isElectron = userAgent.indexOf(' electron/') !== -1;
+    if (isElectron) {
+      const electron = require("electron");
+      electron.ipcRenderer.send('LOGIN');
+    } else {
+      instance.loginPopup(loginRequest).then(res => {
+        // instance.loginRedirect(loginRequest).then(res => {
+        console.log(res);
+        const data = { ...res.account, accessToken: res.accessToken };
+        dispatch(handleLogin(data))
+        toast.success(
+          <ToastContent name={data.name} />,
+          { transition: Slide, hideProgressBar: true, autoClose: 2000, icon: false }
+        )
+      }).catch(e => {
+        console.error(e);
+      });
+    }
   }
 
   return (
