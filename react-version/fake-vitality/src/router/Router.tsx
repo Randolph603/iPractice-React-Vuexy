@@ -128,8 +128,7 @@ const Router = () => {
   return (
     <BaseRouter basename={process.env.REACT_APP_BASENAME}>
       <Switch>
-        <Route exact path='/' render={<Redirect to={DefaultRoute} />} />
-        {/* <Route exact path='/' render={() => isUserLoggedIn ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />} /> */}
+        <Route exact path='/' render={() => !isUserLoggedIn ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />} />
         {ResolveRoutes()}
         <Route path='*' component={Error} />/
       </Switch>
