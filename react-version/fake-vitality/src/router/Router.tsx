@@ -47,9 +47,9 @@ const Router = () => {
 
 
   useEffect(() => {
-    if(isElectron){
+    if (isElectron) {
       const electron = require("electron");
-      electron.ipcRenderer.invoke('GETACCOUNT').then(account=>{
+      electron.ipcRenderer.invoke('GETACCOUNT').then(account => {
         console.log('Router get account', account);
         setIsUserLoggedIn(!!account)
       });
@@ -128,7 +128,8 @@ const Router = () => {
   return (
     <BaseRouter basename={process.env.REACT_APP_BASENAME}>
       <Switch>
-        <Route exact path='/' render={() => isUserLoggedIn ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />} />
+        <Route exact path='/' render={<Redirect to={DefaultRoute} />} />
+        {/* <Route exact path='/' render={() => isUserLoggedIn ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />} /> */}
         {ResolveRoutes()}
         <Route path='*' component={Error} />/
       </Switch>
